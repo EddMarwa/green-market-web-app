@@ -1,12 +1,12 @@
 import React from "react";
-import { db } from "./firebase";
+import AdminPanel from "./components/AdminPanel";
 
-const App = () => {
-  React.useEffect(() => {
-    console.log("Firebase DB:", db);
-  }, []);
-
-  return <h1>Green Market</h1>;
-};
+function App() {
+  return (
+    <div>
+      <AdminPanel />
+    </div>
+  );
+}
 
 export default App;

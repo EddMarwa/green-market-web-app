@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  const db = getFirestore();
+  const db = getFirestore(); // Initialize Firestore outside useEffect
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -16,7 +16,7 @@ const ProductList = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [db]); // Add db as a dependency (optional as db is constant)
 
   return (
     <div>

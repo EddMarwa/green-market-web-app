@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "cra-template": "1.2.0",
+    "firebase": "^11.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-firebase-hooks": "^5.1.1",

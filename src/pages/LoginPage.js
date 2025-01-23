@@ -1,44 +1,34 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
-import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+// src/pages/LoginPage.js
+import React from 'react';
+import { auth } from '../firebase/firebase';  // Import Firebase auth
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate();  // For redirection after login
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    signInWithEmailAndPassword(auth, email, password)
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    auth.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Logged in:", user);
-        navigate("/products"); // Navigate after successful login
+        // Redirect to dashboard after login
+        navigate('/dashboard');
       })
       .catch((error) => {
-        console.error("Error logging in:", error);
+        console.error("Error signing in: ", error);
       });
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="login-page">
+      <h1>Welcome to Green Market</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button type="submit">Log in</button>
+        <input type="email" name="email" placeholder="Enter your Email" required />
+        <input type="password" name="password" placeholder="Enter your Password" required />
+        <button type="submit">Log In</button>
       </form>
     </div>
   );

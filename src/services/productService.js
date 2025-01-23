@@ -1,5 +1,5 @@
 // src/services/productService.js
-import { db } from '../firebase'; // your firebase config
+import { db } from '../firebase/firebase'; // your firebase config
 import { collection, getDocs, addDoc } from 'firebase/firestore';
 
 export const getProducts = async () => {

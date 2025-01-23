@@ -1,4 +1,3 @@
-// src/pages/ProductDetail.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
@@ -22,6 +21,18 @@ const ProductDetail = () => {
     fetchProduct();
   }, [productId]);
 
+  const handleBuy = (product) => {
+    // Logic for handling the purchase
+    console.log("Buying product:", product);
+    // Redirect to checkout or update Firestore
+  };
+
+  const handleRent = (product) => {
+    // Logic for handling the rental
+    console.log("Renting product:", product);
+    // Redirect to checkout or update Firestore
+  };
+
   return (
     <div>
       {product ? (
@@ -30,6 +41,8 @@ const ProductDetail = () => {
           <p>{product.description}</p>
           <p>Price: ${product.price}</p>
           <img src={product.imageUrl} alt={product.name} />
+          <button onClick={() => handleBuy(product)}>Buy</button>
+          <button onClick={() => handleRent(product)}>Rent</button>
         </div>
       ) : (
         <p>Loading product...</p>

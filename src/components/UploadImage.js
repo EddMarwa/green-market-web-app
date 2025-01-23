@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../firebase"; // Import Firebase storage
-import { db } from "../firebase"; // Import Firestore
+import { storage } from "../firebase/firebase"; // Import Firebase storage
+import { db } from "../firebase/firebase"; // Ensure this points to the correct Firebase config
 import { collection, addDoc } from "firebase/firestore";
 
 const UploadImage = () => {

@@ -1,88 +1,127 @@
 /* Global Styles */
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #2E8B57, #32CD32);
+    background: linear-gradient(135deg, #2E8B57, #32CD32); /* Green gradient background */
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-size: 400% 400%;
+    animation: gradientAnimation 8s ease infinite;
   }
   
-  /* Container for Login Form */
+  /* Card-like Form Container */
   #root {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    padding: 30px 20px;
-    animation: fadeIn 1s ease-out;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    animation: fadeIn 1.5s ease-out;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transform: scale(0.98);
+    transition: transform 0.3s ease;
   }
   
-  /* Login Title */
-  h1 {
-    text-align: center;
-    color: #388e3c;
-    font-size: 2.5em;
+  /* Hover Animation for Card */
+  #root:hover {
+    transform: scale(1);
+  }
+  
+  /* Branding Logo */
+  #logo {
+    width: 80px;
     margin-bottom: 20px;
-    font-weight: 500;
+    animation: floatLogo 4s ease-in-out infinite;
+  }
+  
+  /* Heading Style */
+  h1 {
+    color: #388e3c;
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  /* Form Container */
+  form {
+    margin-top: 20px;
   }
   
   /* Label and Input Styles */
   label {
     font-size: 1rem;
     margin-bottom: 10px;
-    display: block;
     color: #388e3c;
+    display: block;
+    text-align: left;
+    font-weight: 500;
+    transition: color 0.3s ease;
   }
   
   input {
     width: 100%;
-    padding: 12px;
+    padding: 15px;
     margin: 10px 0;
     border-radius: 8px;
     border: 2px solid #e0e0e0;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    background-color: #f5f5f5;
+    transition: all 0.3s ease;
   }
   
-  /* Focus Effect for Inputs */
+  /* Input Focus and Hover Effect */
   input:focus {
-    border-color: #388e3c;
+    border-color: #32CD32;
+    background-color: #e8f5e9;
     outline: none;
   }
   
-  /* Floating Labels when Input is Focused */
+  /* Floating Label Effect */
   input:focus + label {
     color: #388e3c;
     font-size: 0.9rem;
-    transform: translateY(-20px);
+    transform: translateY(-18px);
     transition: transform 0.3s ease, color 0.3s ease;
   }
   
   /* Button Styles */
   button {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     margin-top: 20px;
     background: linear-gradient(135deg, #388e3c, #32CD32);
     color: white;
+    font-size: 1.2rem;
     border: none;
     border-radius: 8px;
-    font-size: 1.2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   
-  /* Button Hover Effects */
+  /* Button Hover and Active States */
   button:hover {
     background-color: #2c6e29;
     transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   }
   
-  /* Error Message */
+  button:active {
+    transform: scale(1);
+    background-color: #2a6a28;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Error Message Styling */
   #error-message {
     color: #e53935;
     font-size: 0.9rem;
@@ -90,13 +129,51 @@ body {
     text-align: center;
   }
   
-  /* Animations */
+  /* Smooth Fade-In Animation */
   @keyframes fadeIn {
     from {
       opacity: 0;
     }
     to {
       opacity: 1;
+    }
+  }
+  
+  /* Animated Gradient Background */
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Logo Animation */
+  @keyframes floatLogo {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Smooth Fade-In Text */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
   

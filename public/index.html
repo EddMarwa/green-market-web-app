@@ -23,6 +23,7 @@
   </head>
   <body>
     <div id="root">
+      <img id="logo" src="green-market-logo.png" alt="Green Market Logo" />
       <h1>Green Market</h1>
       <form id="login-form">
         <div>
@@ -50,7 +51,6 @@
           .then((userCredential) => {
             // Redirect to dashboard or main page
             console.log('Logged in:', userCredential.user);
-            // Redirect to the dashboard or home page
             window.location.href = '/dashboard'; // Modify as needed
           })
           .catch((error) => {

@@ -3,8 +3,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import AdminPanel from "./pages/AdminPanel";
-import ProductList from "./pages/ProductList";
+import AdminPanel from "./components/admin/AdminPanel";
+import ProductList from "./components/user/ProductList";
 import ProductDetail from "./pages/ProductDetail";
 
 function App() {

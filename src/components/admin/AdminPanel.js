@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { auth, db } from "../firebase";
+import { db, auth } from "/Users/EddX/Documents/Github/React/green-market/src/firebase/firebase";
 import { useNavigate } from "react-router-dom";
 
 const AdminPanel = () => {
@@ -47,7 +47,7 @@ const AdminPanel = () => {
   return (
     <div>
       <h1>Admin Panel</h1>
-      {/* Add Admin Panel functionality */}
+      <p>Admin features will be displayed here.</p>
     </div>
   );
 };

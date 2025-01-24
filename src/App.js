@@ -12,7 +12,7 @@ import ProductList from "./components/user/ProductList"; // Product list page fo
 import ProductDetail from "./components/user/ProductDetail"; // Product detail page for users
 import NotFound from "./pages/NotFound"; // 404 Page
 
-function App() {
+function App() {  
   return (
     <AuthProvider>
       <Router>

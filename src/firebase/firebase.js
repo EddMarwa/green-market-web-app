@@ -1,16 +1,10 @@
-//import { initializeApp } from "firebase/app";
-//import { getAuth } from "firebase/auth";
-//import { getFirestore } from "firebase/firestore";
-//import { getStorage } from "firebase/storage";
+// Import the necessary Firebase SDKs
 import { initializeApp } from "firebase/app";
-// Import Firebase libraries
-import firebase from "firebase/compat/app";
-import { initializeApp } from "firebase/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-import "firebase/compat/storage";
+import { getAuth } from "firebase/auth";  // For Authentication
+import { getFirestore } from "firebase/firestore";  // For Firestore
+import { getStorage } from "firebase/storage";  // For Firebase Storage
 
-// Your Firebase configuration
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAO1prGq3oQiJ2P92SwCF3L3QlcwHJY2To",
   authDomain: "green-market-7872b.firebaseapp.com",
@@ -21,12 +15,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-// Firebase services
-const auth = app.auth();
-const db = app.firestore();
-const storage = app.storage();
+// Initialize Firebase Authentication, Firestore, and Storage
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
+// Export the initialized services to be used in other parts of the app
 export { auth, db, storage };
-

@@ -1,13 +1,14 @@
 import React from "react";
 import Navbar from "../components/common/Navbar";
 import LogoutButton from "../components/auth/LogoutButton";
+import { db, storage } from '../firebase';
 import { useAuth } from "../components/auth/AuthContext";
 import "../../styles/admin.css"; // Admin specific styles
 
 const AdminPanel = () => {
   const { user } = useAuth();
 
-  if (user?.email !== "admin@example.com") {
+  if (user?.email !== "admin@greenmarket") {
     return <p>You are not authorized to view this page.</p>;
   }
 

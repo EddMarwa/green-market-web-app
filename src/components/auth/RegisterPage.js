@@ -1,33 +1,58 @@
-import React from "react";
-import { auth } from "../../firebase/firebase";
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../../firebase/firebase";
+import { setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import "../../styles/auth.css";  // Add your custom register styles
 
 const RegisterPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Registration Error:", error.message);
+      // Save user data in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        email: user.email,
+        role: "user", // Default role as "user"
       });
+
+      navigate("/login");  // Redirect to login after successful registration
+    } catch (error) {
+      setError("Registration failed: " + error.message);
+    }
   };
 
   return (
-    <div className="login-page">
-      <h1>Register for Green Market</h1>
-      <form onSubmit={handleSubmit} className="login-form">
-        <input type="email" name="email" placeholder="Enter your Email" required />
-        <input type="password" name="password" placeholder="Enter your Password" required />
-        <button type="submit">Register</button>
+    <div className="register-page">
+      <h2>Sign up for Green Market</h2>
+      <form onSubmit={handleRegister} className="register-form">
+        <input
+          type="email"
+          placeholder="Enter your Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Enter your Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit">Sign Up</button>
       </form>
+      <p>
+        Already have an account? <a href="/login">Login here</a>
+      </p>
     </div>
   );
 };

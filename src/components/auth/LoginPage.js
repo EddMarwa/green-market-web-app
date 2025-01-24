@@ -1,53 +1,48 @@
-// src/pages/LoginPage.js
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase/firebase";
-//import './styles.css';
-
+import "../../styles/auth.css";  // Add your custom login styles
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/dashboard"); // Redirect to dashboard on successful login
-    } catch (err) {
-      setError("Invalid email or password");
+      navigate("/"); // Redirect to home after login
+    } catch (error) {
+      setError("Login failed: " + error.message);
     }
   };
 
   return (
     <div className="login-page">
-      <h1>Welcome to Green Market</h1>
-      <form onSubmit={handleLogin}>
+      <h2>Login to Green Market</h2>
+      <form onSubmit={handleLogin} className="login-form">
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Enter your Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Enter your Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {error && <p className="error">{error}</p>}
-        <button type="submit">Log In</button>
+        {error && <p className="error-message">{error}</p>}
+        <button type="submit">Login</button>
       </form>
       <p>
-        Don't have an account?{" "}
-        <button className="link" onClick={() => navigate("/signup")}>
-          Sign Up
-        </button>
+        Don't have an account? <a href="/register">Sign up here</a>
       </p>
     </div>
   );

@@ -1,16 +1,16 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { auth } from "../../firebase/firebase";
+import { useAuth } from "./AuthContext";
 
-const ProtectedRoute = ({ element, isAdmin }) => {
-  const user = auth.currentUser;
+const ProtectedRoute = ({ element, adminRequired = false }) => {
+  const { user } = useAuth();
 
   if (!user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 
-  if (isAdmin && user.email !== "admin@example.com") {
-    return <Navigate to="/products" />;
+  if (adminRequired && user.email !== "admin@example.com") {
+    return <Navigate to="/" />; // Redirect non-admin users
   }
 
   return element;

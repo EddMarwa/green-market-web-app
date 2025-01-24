@@ -1,25 +1,40 @@
-import React from "react";
-import Navbar from "../components/common/Navbar";
-import LogoutButton from "../components/auth/LogoutButton";
-import { db, storage } from '../firebase';
-import { useAuth } from "../components/auth/AuthContext";
-import "../../styles/admin.css"; // Admin specific styles
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase/firebase'; // Firebase instance
+import { collection, getDocs } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const AdminPanel = () => {
-  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
 
-  if (user?.email !== "admin@greenmarket") {
-    return <p>You are not authorized to view this page.</p>;
-  }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const productCollection = collection(db, 'products');
+      const productSnapshot = await getDocs(productCollection);
+      const productList = productSnapshot.docs.map(doc => doc.data());
+      setProducts(productList);
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
-    <div>
-      <Navbar />
+    <div className="admin-panel">
       <h2>Admin Panel</h2>
-      <LogoutButton />
-      <div className="admin-content">
-        <h3>Manage Products</h3>
-        {/* Add logic to manage products */}
+      <h3>Manage Your Products</h3>
+      <div className="product-list">
+        {products.map((product, index) => (
+          <div className="product-card" key={index}>
+            <img
+              className="product-image"
+              src={product.imageURL}
+              alt={product.name}
+            />
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <button onClick={() => navigate(`/product/${product.id}`)}>Edit</button>
+          </div>
+        ))}
       </div>
     </div>
   );

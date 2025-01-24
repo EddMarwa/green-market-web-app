@@ -1,30 +1,21 @@
-// src/pages/ProductList.js
-import React, { useEffect, useState } from "react";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const db = getFirestore(); // Initialize Firestore outside useEffect
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const productsCollection = collection(db, "products");
-      const productSnapshot = await getDocs(productsCollection);
-      const productList = productSnapshot.docs.map(doc => doc.data());
-      setProducts(productList);
-    };
-
-    fetchProducts();
-  }, [db]); // Add db as a dependency (optional as db is constant)
+  const products = [
+    { id: 1, name: "Product A" },
+    { id: 2, name: "Product B" },
+  ];
 
   return (
     <div>
-      <h2>Products</h2>
+      <h1>Product List</h1>
       <ul>
-        {products.map((product, index) => (
-          <li key={index}>
-            <Link to={`/product/${product.id}`}>{product.name}</Link>
+        {products.map((product) => (
+          <li key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
+            {product.name}
           </li>
         ))}
       </ul>

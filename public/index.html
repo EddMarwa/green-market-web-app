@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Green Market - Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Green Market</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="%PUBLIC_URL%/styles.css" />
+
+    <!-- Meta description for SEO -->
+    <meta name="description" content="Green Market - Reselling and Renting Second-hand Items" />
+    <meta name="theme-color" content="#6B8E23" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Green Market" />
+    <meta property="og:description" content="A marketplace for reselling and renting second-hand items." />
+    <meta property="og:image" content="%PUBLIC_URL%/green-market-logo.png" />
+    <meta property="og:url" content="https://your-green-market-url.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Firebase Scripts -->
+    <script defer src="/__/firebase/11.2.0/firebase-app-compat.js"></script>
+    <script defer src="/__/firebase/11.2.0/firebase-auth-compat.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
   </head>
   <body>
-    <div id="root"></div> <!-- Only this div should exist to mount React app -->
-    <!-- Firebase scripts -->
-    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div> <!-- React app will be mounted here -->
   </body>
 </html>

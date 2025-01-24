@@ -1,21 +1,25 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage"; // Import Storage
+// Import Firebase libraries
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import "firebase/compat/storage";
 
-// Your web app's Firebase configuration
+// Your Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAO1prGq3oQiJ2P92SwCF3L3QlcwHJY2To",
-  authDomain: "green-market-7872b.firebaseapp.com",
-  projectId: "green-market-7872b",
-  storageBucket: "green-market-7872b.appspot.com", // Corrected storageBucket URL
-  messagingSenderId: "659801733226",
-  appId: "1:659801733226:web:697fc24a22884ce2fa3213",
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app); // Initialize Storage
+const app = firebase.initializeApp(firebaseConfig);
+
+// Firebase services
+const auth = app.auth();
+const db = app.firestore();
+const storage = app.storage();
+
+export { auth, db, storage };
